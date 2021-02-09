@@ -9,7 +9,6 @@ class NotesList extends Component {
       {Array.of("Trabalho", "Faculdade", "Estudos").map((category, index) => {
         return (
           <li className="note-list_item" key={index}>
-            <legend>{category}</legend>
             <NoteCard />
           </li>
         )
