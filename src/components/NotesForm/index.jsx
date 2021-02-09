@@ -12,7 +12,6 @@ class NotesForm extends Component {
   _handleChangeTitle(event) {
     event.stopPropagation();
     this.title = event.target.value;
-    console.log(this.title);
   }
   _handleChangeText(event) {
     event.stopPropagation();
@@ -21,7 +20,7 @@ class NotesForm extends Component {
   _handleCreateNote(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.props._createNote(this.title, this.text);
+    this.props.createNote(this.title, this.text);
   }
 
   render() {
