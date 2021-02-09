@@ -25,3 +25,7 @@
   font-size: 1.2em;
   margin-right: 12px;
 }
+
+.note-card_delete {
+  cursor: pointer;
+}
