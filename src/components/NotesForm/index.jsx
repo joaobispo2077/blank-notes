@@ -24,13 +24,13 @@ class NotesForm extends Component {
   }
 
   render() {
-    return(
+    return (
       <form onSubmit={this._handleCreateNote.bind(this)} className="notes-form">
-        <input 
+        <input
           onChange={this._handleChangeTitle.bind(this)}
           className="notes-form_input" type="text" placeholder="Título"
         />
-        <textarea onChange={this._handleChangeText.bind(this)} rows={15} className="notes-form_input" placeholder="Escreva a sua nota"/>
+        <textarea onChange={this._handleChangeText.bind(this)} rows={15} className="notes-form_input" placeholder="Escreva a sua nota" />
 
         <button className="notes-form_input notes-form_submit">Criar nota</button>
       </form>
