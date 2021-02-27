@@ -1,8 +1,18 @@
 export default class Notes {
   constructor() {
     this.notes = [];
+    this._subscribers = [];
   }
 
+  subscribe(fs) {
+    this._subscribers.push(fs);
+
+  }
+
+  notify() {
+    this._subscribers.forEach(fs => fs(this.notes));
+  }
+  
   createNote(title, text, category) {
     const note = new Note(title, text, category);
     this.notes.push(note);
