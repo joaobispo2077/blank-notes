@@ -5,50 +5,32 @@ import CategoryList from './components/CategoryList';
 
 import './assets/css/global.css';
 import './assets/css/reset.css';
+
+import Categories from "./data/Categories";
+import Notes from "./data/Notes";
 class App extends Component {
 
   constructor() {
     super();
-    this.state = {
-      notes: [],
-      categories: []
-    };
+    this.categories = new Categories();
+    this.notes = new Notes();
   }
 
-  createNote(title, text, category) {
-    const note = { title, text, category };
-    const notes = [...this.state.notes, note];
-    this.setState({ notes });
-  }
-
-  deleteNote(index) {
-    let notes = this.state.notes;
-    notes.splice(index, 1);
-    this.setState({ notes });
-  }
-
-  createCategory(category) {
-    const categoryAlreadyExists = this.state.categories.includes(category);
-    if (!categoryAlreadyExists) {
-      const categories = [...this.state.categories, category];
-      this.setState({ categories });
-    }
-  }
   render() {
     return (
       <section className="content">
         <NotesForm
-          createNote={this.createNote.bind(this)}
-          categories={this.state.categories}
+          createNote={this.notes.createNote}
+          categories={this.categories.categories}
         />
         <main className="main-content">
           <CategoryList
-            createCategory={this.createCategory.bind(this)}
-            categories={this.state.categories}
+            createCategory={this.categories.createCategory}
+            categories={this.categories.categories}
           />
           <NotesList
-            removeNote={this.deleteNote.bind(this)}
-            notes={this.state.notes}
+            removeNote={this.notes.deleteNote}
+            notes={this.notes.notes}
           />
         </main>
       </section>
