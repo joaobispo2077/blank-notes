@@ -10,7 +10,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      notes: []
+      notes: [],
+      categories: []
     };
   }
 
@@ -25,6 +26,14 @@ class App extends Component {
     notes.splice(index, 1);
     this.setState({ notes });
   }
+
+  createCategory(category) {
+    const categoryAlreadyExists = this.state.categories.includes(category);
+    if(!categoryAlreadyExists){
+      const categories = [...this.state.categories, category];
+      this.setState({ categories });
+    }
+  }
   render() {
     return (
       <section className="content">
@@ -32,7 +41,10 @@ class App extends Component {
           createNote={this.createNote.bind(this)}
         />
         <main className="main-content">
-          <CategoryList />
+          <CategoryList
+            createCategory={this.createCategory.bind(this)}
+            categories={this.state.categories}
+          />
           <NotesList
             removeNote={this.deleteNote.bind(this)}
             notes={this.state.notes}
