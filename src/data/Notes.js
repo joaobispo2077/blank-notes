@@ -6,7 +6,10 @@ export default class Notes {
 
   subscribe(fs) {
     this._subscribers.push(fs);
+  }
 
+  unsubscribe(fs) {
+    this._subscribers = this._subscribers.filter(f => f !== fs);
   }
 
   notify() {
@@ -20,8 +23,6 @@ export default class Notes {
   }
 
   deleteNote(index) {
-    console.log('notes', this.notes)
-    console.log('index', index)
     this.notes.splice(index, 1);
     this.notify();
   }

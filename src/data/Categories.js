@@ -6,7 +6,10 @@ export default class Categories {
 
   subscribe(fs) {
     this._subscribers.push(fs);
+  }
 
+  unsubscribe(fs) {
+    this._subscribers = this._subscribers.filter(f => f !== fs);
   }
 
   notify() {

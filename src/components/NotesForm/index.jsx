@@ -9,10 +9,15 @@ class NotesForm extends Component {
     this.text = "";
     this.category = "Sem categoria";
     this.state = { categories: [] };
+    this.updateCategories = this._handleUpdateCategories.bind(this);
   }
 
-  componentDidMount() {
-    this.props.categories.subscribe(this._handleUpdateCategories.bind(this));
+  componentDidMount() {  
+    this.props.categories.subscribe(this.updateCategories);
+  }
+
+  componentWillUnmount() {
+    this.props.categories.unsubscribe(this.updateCategories);
   }
 
   _handleUpdateCategories(categories) {
