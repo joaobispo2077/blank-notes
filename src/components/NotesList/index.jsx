@@ -3,11 +3,24 @@ import NoteCard from '../NoteCard';
 
 import './styles.css';
 class NotesList extends Component {
+  
+  constructor() {
+    super();
+    this.state = { notes: [] };
+  }
+
+  componentDidMount() {
+    this.props.notes.subscribe(this._handleSubscribeNotes.bind(this));
+  }
+
+  _handleSubscribeNotes(notes) {
+    this.setState({...this.state ,notes});
+  }
 
   render() {
     return (
       <ul className="note-list">
-        {this.props.notes.map((note, index) => {
+        {this.state.notes.map((note, index) => {
           return (
             <li className="note-list_item" key={index}>
               <NoteCard

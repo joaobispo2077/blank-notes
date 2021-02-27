@@ -14,6 +14,7 @@ export default class Categories {
   }
 
   createCategory(category) {
-    this.category.push(category);
+    this.categories.push(category);
+    this.notify();
   }
 }

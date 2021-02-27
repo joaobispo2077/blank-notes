@@ -16,10 +16,14 @@ export default class Notes {
   createNote(title, text, category) {
     const note = new Note(title, text, category);
     this.notes.push(note);
+    this.notify();
   }
 
   deleteNote(index) {
+    console.log('notes', this.notes)
+    console.log('index', index)
     this.notes.splice(index, 1);
+    this.notify();
   }
 }
 

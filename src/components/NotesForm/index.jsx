@@ -8,6 +8,15 @@ class NotesForm extends Component {
     this.title = "";
     this.text = "";
     this.category = "Sem categoria";
+    this.state = { categories: [] };
+  }
+
+  componentDidMount() {
+    this.props.categories.subscribe(this._handleUpdateCategories.bind(this));
+  }
+
+  _handleUpdateCategories(categories) {
+    this.setState({ ...this.categories, categories });
   }
 
   _handleChangeTitle(event) {
@@ -33,8 +42,8 @@ class NotesForm extends Component {
       <form onSubmit={this._handleCreateNote.bind(this)} className="notes-form">
         <select onChange={this._handleChangeCategory.bind(this)} className="notes-form_inp">
           <option selected="selected">Sem categoria</option>
-          {this.props.categories.map((category, index)  => {
-            return <option  key={index}>{category}</option>
+          {this.state.categories.map((category, index) => {
+            return <option key={index}>{category}</option>
           })}
         </select>
 

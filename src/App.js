@@ -20,17 +20,17 @@ class App extends Component {
     return (
       <section className="content">
         <NotesForm
-          createNote={this.notes.createNote}
-          categories={this.categories.categories}
+          createNote={this.notes.createNote.bind(this.notes)}
+          categories={this.categories}
         />
         <main className="main-content">
           <CategoryList
-            createCategory={this.categories.createCategory}
-            categories={this.categories.categories}
+            createCategory={this.categories.createCategory.bind(this.categories)}
+            categories={this.categories}
           />
           <NotesList
-            removeNote={this.notes.deleteNote}
-            notes={this.notes.notes}
+            removeNote={this.notes.deleteNote.bind(this.notes)}
+            notes={this.notes}
           />
         </main>
       </section>
