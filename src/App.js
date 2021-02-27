@@ -15,8 +15,8 @@ class App extends Component {
     };
   }
 
-  createNote(title, text) {
-    const note = { title, text };
+  createNote(title, text, category) {
+    const note = { title, text, category };
     const notes = [...this.state.notes, note];
     this.setState({ notes });
   }
@@ -29,7 +29,7 @@ class App extends Component {
 
   createCategory(category) {
     const categoryAlreadyExists = this.state.categories.includes(category);
-    if(!categoryAlreadyExists){
+    if (!categoryAlreadyExists) {
       const categories = [...this.state.categories, category];
       this.setState({ categories });
     }
@@ -39,6 +39,7 @@ class App extends Component {
       <section className="content">
         <NotesForm
           createNote={this.createNote.bind(this)}
+          categories={this.state.categories}
         />
         <main className="main-content">
           <CategoryList

@@ -7,6 +7,7 @@ class NotesForm extends Component {
     super(props);
     this.title = "";
     this.text = "";
+    this.category = "Sem categoria";
   }
 
   _handleChangeTitle(event) {
@@ -17,15 +18,26 @@ class NotesForm extends Component {
     event.stopPropagation();
     this.text = event.target.value;
   }
+  _handleChangeCategory(event) {
+    event.stopPropagation();
+    this.category = event.target.value;
+  }
   _handleCreateNote(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.props.createNote(this.title, this.text);
+    this.props.createNote(this.title, this.text, this.category);
   }
 
   render() {
     return (
       <form onSubmit={this._handleCreateNote.bind(this)} className="notes-form">
+        <select onChange={this._handleChangeCategory.bind(this)} className="notes-form_inp">
+          <option selected="selected">Sem categoria</option>
+          {this.props.categories.map((category, index)  => {
+            return <option  key={index}>{category}</option>
+          })}
+        </select>
+
         <input
           onChange={this._handleChangeTitle.bind(this)}
           className="notes-form_input" type="text" placeholder="Título"

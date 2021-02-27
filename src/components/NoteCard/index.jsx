@@ -15,6 +15,7 @@ class NoteCard extends Component {
           <h3 className="note-card_title">{this.props.title}</h3>
           <img className="note-card_delete" onClick={this.handleDeleteNote.bind(this)} src={removeIcon} />
         </header>
+          <h4>{this.props.category}</h4>
         <p className="note-card_txt">{this.props.text}</p>
       </section>
     );
