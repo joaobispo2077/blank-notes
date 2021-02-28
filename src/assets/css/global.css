@@ -9,3 +9,7 @@
   --fundo: #ffffff;
   --fundo-detalhes: #ececec;
 }
+
+.main-content {
+  flex-grow: 3;
+}

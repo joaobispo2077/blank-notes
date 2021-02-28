@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
 import NotesForm from './components/NotesForm';
 import NotesList from './components/NotesList';
+import CategoryList from './components/CategoryList';
 
 import './assets/css/global.css';
 import './assets/css/reset.css';
+
+import Categories from "./data/Categories";
+import Notes from "./data/Notes";
 class App extends Component {
 
   constructor() {
     super();
-    this.state = {
-      notes: []
-    };
+    this.categories = new Categories();
+    this.notes = new Notes();
   }
 
-  createNote(title, text){
-    const note = {title, text};
-    const notes = [...this.state.notes, note];
-    this.setState({notes});
-  }
-  render(){
+  render() {
     return (
       <section className="content">
-        <NotesForm createNote={this.createNote.bind(this)}/>
-        <NotesList notes={this.state.notes}/>
+        <NotesForm
+          createNote={this.notes.createNote.bind(this.notes)}
+          categories={this.categories}
+        />
+        <main className="main-content">
+          <CategoryList
+            createCategory={this.categories.createCategory.bind(this.categories)}
+            categories={this.categories}
+          />
+          <NotesList
+            removeNote={this.notes.deleteNote.bind(this.notes)}
+            notes={this.notes}
+          />
+        </main>
       </section>
     );
   }
